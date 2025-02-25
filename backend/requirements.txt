@@ -1,0 +1,6 @@
+asgiref
+Django~=5.1.6
+djangorestframework
+django-cors-headers
+sqlparse
+python-dotenv
