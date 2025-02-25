@@ -3,6 +3,7 @@ import SplitText from "@/components/SplitText";
 import { ArrowUpRight } from "lucide-react";
 import AddBlog from "@/components/AddBlog";
 import api from "@/api";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 const Home = () => {
   const [blogs, SetBlogs] = useState([]);
@@ -56,17 +57,22 @@ const Home = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-4 mt-4 ">
-        {blogs.map((blog) => (
-          <Link to={`/blog/${blog.id}`}>
-            <div
-              key={blog.id}
-              className="border border-[#3a3a3a] p-4  group transition hover:cursor-pointer"
+        {blogs.map((blog, index) => (
+          <Link to={`/blog/${blog.id}`} key={blog.id}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5, // Increased duration for smoother animation
+                delay: index * 0.2,
+                ease: "easeOut", // Changed easing for a smoother finish
+              }}
+              className="border border-[#3a3a3a] p-4 group  hover:cursor-pointer"
             >
               <div className="flex items-center justify-center ">
                 <img
                   className="h-64 w-full object-cover "
                   src={`http://127.0.0.1:8000/api${blog.images[0]?.image}`}
-                  // src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
                   alt={blog.title}
                 />
               </div>
@@ -80,7 +86,7 @@ const Home = () => {
                   <p>{formatDate(blog.created_date)}</p>
                 </div>
 
-                <div className="rounded-full border p-2 transition-colors ease-in-out group-hover:bg-white group-hover:text-black">
+                <div className="rounded-full border p-2 transition-colors ease-in-out group-hover:bg-white group-hover:text-black ">
                   <ArrowUpRight
                     size={20}
                     className="transition-transform group-hover:scale-110"
@@ -88,7 +94,7 @@ const Home = () => {
                 </div>
               </div>
               <p className="italic text-sm tracking-wider">{blog.dateRange}</p>
-            </div>
+            </motion.div>
           </Link>
         ))}
       </div>

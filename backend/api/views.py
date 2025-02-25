@@ -24,7 +24,7 @@ def get_post(request, pk):
 
 
 @api_view(['PUT', 'DELETE'])
-def post_detail(request, pk):
+def delete_post(request, pk):
     try:
         post = Post.objects.get(id=pk)
     except Post.DoesNotExist:

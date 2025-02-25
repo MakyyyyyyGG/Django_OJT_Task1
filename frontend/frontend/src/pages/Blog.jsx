@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Trash, Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "@/components/ui/sonner";
+import { motion } from "framer-motion";
 import {
   Dialog,
   DialogClose,
@@ -44,7 +45,7 @@ const Blog = () => {
 
   const deleteBlog = async () => {
     try {
-      const response = await api.delete(`/api/posts/${id}`);
+      const response = await api.delete(`/api/posts/${id}/delete`);
       console.log("Success:", response.data);
       if (response.status === 204) {
         toast.success("Blog has been deleted", {});
@@ -128,13 +129,22 @@ const Blog = () => {
       <div className="grid grid-cols-3 gap-4 my-8">
         {blog.images &&
           blog.images.map((image, index) => (
-            <div className="">
+            <motion.div
+              className=""
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.2,
+                ease: "easeOut",
+              }}
+            >
               <img
-                className="object-cover h-64 w-full"
-                key={index}
+                className="object-cover h-64 w-full "
                 src={`http://127.0.0.1:8000/api${image.image}`}
               />
-            </div>
+            </motion.div>
           ))}
       </div>
 

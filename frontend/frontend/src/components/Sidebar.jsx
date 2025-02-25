@@ -8,7 +8,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 const links = [
   { to: "/home", label: "Home", icon: <Home size={18} /> },
   { to: "/about", label: "About", icon: <Info size={18} /> },
@@ -16,7 +15,6 @@ const links = [
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
-
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
   };
@@ -27,7 +25,9 @@ const Sidebar = () => {
         isExpanded ? "w-56 p-4" : "w-16 items-center"
       } bg-[#1d1d21] text-white flex flex-col  py-4 border-r border-[#3a3a3a] ease-in-out transition-all `}
     >
-      <h1 className="mb-6 text-lg font-bold">SB</h1>
+      <NavLink to="/home" className="mb-6 text-lg font-bold">
+        MC
+      </NavLink>
       <button
         onClick={toggleSidebar}
         className={`mb-4 ${isExpanded ? "ml-auto" : ""}`}
@@ -74,7 +74,7 @@ const Sidebar = () => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src="https://lh3.googleusercontent.com/a/ACg8ocLxOnGzztI0QPhIF1ewl-bDBP4s3I75hX-UIifLvj6NHOEe_ao=s360-c-no" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </TooltipTrigger>

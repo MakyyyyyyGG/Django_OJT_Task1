@@ -41,8 +41,8 @@ class ImageSerializer(serializers.ModelSerializer):
 #         return instance
 
 class PostSerializer(serializers.ModelSerializer):
-    descriptions = DescriptionSerializer(many=True, required=False, read_only=True)
-    images = ImageSerializer(many=True, required=False)  # ✅ Make images optional
+    descriptions = DescriptionSerializer(many=True, required=False, allow_empty=True)
+    images = ImageSerializer(many=True, required=False, allow_empty=True)
 
     class Meta:
         model = Post
@@ -50,20 +50,40 @@ class PostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         descriptions_data = validated_data.pop("descriptions", [])
-        images_data = validated_data.pop("images", [])  # ✅ Handle optional images
+        images_data = validated_data.pop("images", [])
 
         post = Post.objects.create(**validated_data)
         
         for description_data in descriptions_data:
             Description.objects.create(post=post, **description_data)
 
-        # ✅ Ensure images are optional before processing them
         for image_data in images_data:
             image_instance = Image.objects.create(image=image_data['image'])
             post.images.add(image_instance)
 
         return post
 
+    def update(self, instance, validated_data):
+        descriptions_data = validated_data.pop('descriptions', [])
+        images_data = validated_data.pop('images', [])
+
+        # Update the post fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        # Handle descriptions
+        instance.descriptions.all().delete()
+        for description_data in descriptions_data:
+            Description.objects.create(post=instance, **description_data)
+
+        # Handle images
+        instance.images.all().delete()
+        for image_data in images_data:
+            image_instance = Image.objects.create(image=image_data['image'])
+            instance.images.add(image_instance)
+
+        return instance
     
 
 
