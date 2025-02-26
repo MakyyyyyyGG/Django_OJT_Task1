@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-#kq^8j8iyu!y^_9s)#0j(co3&@@zdb0(r)c2vvhi^kw#mi2)py
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com', 'django-ojt-task1.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com', 'django-ojt-task1.onrender.com', 'markyyyyyygg.pythonanywhere.com ']
 
 # Application definition
 
