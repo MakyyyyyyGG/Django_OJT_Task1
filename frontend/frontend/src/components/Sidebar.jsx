@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const links = [
-  { to: "/home", label: "Home", icon: <Home size={18} /> },
+  { to: "/preview", label: "Home", icon: <Home size={18} /> },
   { to: "/about", label: "About", icon: <Info size={18} /> },
 ];
 
