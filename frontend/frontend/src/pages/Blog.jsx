@@ -124,7 +124,7 @@ const Blog = () => {
           {formatDate(blog.created_date)}
         </h1>
       </div>
-      <h1 className="text-7xl font-bold my-8">{blog.title}</h1>
+      <h1 className="text-7xl font-bold my-8 ">{blog.title}</h1>
 
       <div className="grid grid-cols-3 gap-4 my-8">
         {blog.images &&
