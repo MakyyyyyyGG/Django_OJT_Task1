@@ -142,7 +142,7 @@ const Blog = () => {
             >
               <img
                 className="object-cover h-64 w-full "
-                src={`http://127.0.0.1:8000/api${image.image}`}
+                src={`https://markyyyyyygg.pythonanywhere.com/api${image.image}`}
               />
             </motion.div>
           ))}

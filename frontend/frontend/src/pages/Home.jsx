@@ -72,7 +72,7 @@ const Home = () => {
               <div className="flex items-center justify-center ">
                 <img
                   className="h-64 w-full object-cover "
-                  src={`http://127.0.0.1:8000/api${blog.images[0]?.image}`}
+                  src={`https://markyyyyyygg.pythonanywhere.com/api${blog.images[0]?.image}`}
                   alt={blog.title}
                 />
               </div>
