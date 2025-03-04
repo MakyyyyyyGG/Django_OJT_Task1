@@ -254,7 +254,7 @@ const EditBlog = ({ blog, updateSuccess }) => {
                       <Trash />
                     </Button>
                     <img
-                      src={`http://127.0.0.1:8000/api${image.image}`}
+                      src={`${import.meta.env.VITE_API_URL}/api${image.image}`}
                       alt={`Existing ${index + 1}`}
                       className="w-full h-32 object-cover rounded border"
                     />
