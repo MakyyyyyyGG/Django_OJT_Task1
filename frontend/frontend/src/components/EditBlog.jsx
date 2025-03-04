@@ -41,6 +41,7 @@ const EditBlog = ({ blog, updateSuccess }) => {
         title: blog.title,
         descriptions: blog.descriptions || [{ text: "" }],
       });
+      setExistingImages(blog.images || []); // Ensure existing images are set
     }
   }, [blog, reset]);
 
@@ -95,12 +96,6 @@ const EditBlog = ({ blog, updateSuccess }) => {
     }
   };
 
-  useEffect(() => {
-    if (blog && blog.images) {
-      setExistingImages(blog.images);
-    }
-  }, [blog]);
-
   const onSubmit = async (formData) => {
     setLoading(true);
     try {
@@ -115,7 +110,11 @@ const EditBlog = ({ blog, updateSuccess }) => {
 
       console.log("updatedData:", updateData);
 
-      const response = await api.put(`/api/posts/${blog.id}`, updateData);
+      const response = await api.put(
+        `/api/posts/${blog.id}/delete`,
+        updateData
+      );
+
       console.log(response.data);
 
       // Upload new images if any

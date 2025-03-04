@@ -72,7 +72,9 @@ const Preview = () => {
               <div className="flex items-center justify-center ">
                 <img
                   className="h-64 w-full object-cover "
-                  src={`https://markyyyyyygg.pythonanywhere.com/api${blog.images[0]?.image}`}
+                  src={`${import.meta.env.VITE_API_URL}/api${
+                    blog.images[0]?.image
+                  }`}
                   alt={blog.title}
                 />
               </div>

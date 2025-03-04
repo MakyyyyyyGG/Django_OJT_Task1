@@ -142,7 +142,7 @@ const Blog = () => {
             >
               <img
                 className="object-cover h-64 w-full "
-                src={`https://markyyyyyygg.pythonanywhere.com/api${image.image}`}
+                src={`${import.meta.env.VITE_API_URL}/api${image.image}`}
               />
             </motion.div>
           ))}
